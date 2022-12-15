@@ -1,24 +1,37 @@
 type Fraction = [number, number];
-const fraction :Fraction = [1, 7];
+type DecimalPlace = {
+  baseNumerator :number,
+  quotient :number
+}
+const fraction :Fraction = [1, 90];
 
 const [numerator, denominator] : [number, number] = fraction;
-let tempNumerator = numerator;
-let quotient = Math.floor((tempNumerator * 10) / denominator);
+let baseNumerator :number = numerator;
+let quotient :number = Math.floor(numerator * 10 / denominator);
 
-const decimalExpansion :number[] = [0];
-const initialRemainders :number[] = [];
+const decimal :DecimalPlace[] = [];
 
-while (tempNumerator !== 0 && !initialRemainders.includes(tempNumerator)) {
+let nextDecimal :DecimalPlace = {
+  baseNumerator,
+  quotient,
+};
 
-  decimalExpansion.push(quotient)
-  initialRemainders.push(tempNumerator);
+// let repeatedDecimal :number = quotient;
 
-  tempNumerator = (tempNumerator * 10) % denominator;
-  quotient = Math.floor((tempNumerator * 10) / denominator);
+while (nextDecimal.baseNumerator !== 0 && !decimal.map(decimalPoint => decimalPoint.baseNumerator).includes(nextDecimal.baseNumerator)) {
 
-  console.log(initialRemainders);
-  console.log(decimalExpansion);
+  decimal.push(nextDecimal)
+
+  baseNumerator = (nextDecimal.baseNumerator * 10) % denominator;
+  quotient = Math.floor(baseNumerator * 10 / denominator);
+
+  nextDecimal = {
+    baseNumerator,
+    quotient
+  }
+
 }
 
-console.log(initialRemainders);
-console.log(decimalExpansion);
+const decimalObject = { decimal, nextDecimalIndex: decimal.findIndex(decimalPlace => decimalPlace.baseNumerator === nextDecimal.baseNumerator) };
+
+console.log("decimal", decimalObject);

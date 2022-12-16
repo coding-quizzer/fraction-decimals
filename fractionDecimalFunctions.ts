@@ -97,11 +97,12 @@ const getRepeatingDigits = (
 };
 
 export const convertToRepeatingDecimal = (
-  decimalExpansion: DecimalExpansionObject
+  fraction: Fraction
 ): {
   nonRepeatingDigits?: DecimalPlace[];
   repeatingDigits?: DecimalPlace[];
 } => {
+  const decimalExpansion = generateDecimalExpansion(fraction);
   const { decimal, repeatBeginIndex } = decimalExpansion;
 
   const repeatingDecimal: {

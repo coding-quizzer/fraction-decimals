@@ -6,7 +6,7 @@ type DecimalPlace = {
 
 const fraction: Fraction = [1, 25];
 
-const generateDecimalExpansion = (
+export const generateDecimalExpansion = (
   fraction: Fraction
 ): { decimal: DecimalPlace[]; repeatBeginIndex: number | null } => {
   const [numerator, denominator]: [number, number] = fraction;
@@ -50,5 +50,3 @@ const generateDecimalExpansion = (
     repeatBeginIndex: repeatingDecimal ? repeatBeginIndex : null,
   };
 };
-
-console.log(generateDecimalExpansion(fraction));

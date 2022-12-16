@@ -1,3 +1,4 @@
+import { RepeatingDecimalObject } from "./fractionDecimalFunctions";
 export const convertFractionToTuple = (stringFraction: string): [number, number] => {
   let numerator: number = 0;
   let denominator: number;
@@ -20,4 +21,26 @@ export const convertFractionToTuple = (stringFraction: string): [number, number]
   if (denominator === 0) throw new Error("Can't divide by zero");
 
   return [numerator, denominator];
+};
+
+export const convertDecimalObjectToString = (
+  decimalObject: RepeatingDecimalObject
+): string => {
+  let decimalString: string = "0.";
+  if (decimalObject.nonRepeatingDigits) {
+    for (const digit of decimalObject.nonRepeatingDigits) {
+      decimalString += String(digit.quotient);
+    }
+  }
+
+  if (decimalObject.repeatingDigits) {
+    decimalString += "|";
+
+    for (const digit of decimalObject.repeatingDigits) {
+      decimalString += String(digit.quotient);
+    }
+
+    decimalString += "|";
+  }
+  return decimalString;
 };

@@ -39,8 +39,6 @@ export const convertDecimalObjectToString = (
     for (const digit of decimalObject.repeatingDigits) {
       decimalString += String(digit.quotient);
     }
-
-    decimalString += "|";
   }
   return decimalString;
 };

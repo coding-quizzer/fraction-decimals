@@ -9,8 +9,8 @@ type DecimalExpansionObject = {
   repeatBeginIndex: number | null;
 };
 /**
- *
- * @param fraction [numerator, denominator] array representation of a fraction.
+ * Generates an array object with the information neccesary to produce the decimal expansion.
+ * @param {[numerator, denominator]} fraction (tuple representation of a fraction.)
  * @returns {
  *  {
  *    decimal: [{
@@ -22,11 +22,11 @@ type DecimalExpansionObject = {
  *       )
  *
  *       quotient: number (the numerical value of the digit itself)
- *  }],
+ *    }],
  *
- *  repeatBeginIndex: number (the index of the first digit in the number's repeating decimal)
+ *    repeatBeginIndex: number (the index of the first digit in the number's repeating decimal)
  *
- * }
+ *  }
  * }
  **/
 
@@ -95,6 +95,29 @@ const getRepeatingDigits = (
 
   return repeatingDigits;
 };
+
+/**
+ *
+ * @param {[numerator, denominator]} fraction (tuple representation of a fraction)
+ * @returns {{
+ *  nonRepeatingDigits: {
+ *    [{
+ *      baseNumerator: {number},
+ *      quotient?: {number}
+ *    }]
+ *  } DecimalPlace[] (represents the decimal digits that do not repeat. Ex. since 1/14 = 0.0714285714285...
+ *  0 is the one non-repeating decimal digit),
+ *
+ *  repeatingDigits?: {
+ *   [{
+ *      baseNumerator: {number},
+ *      quotient?: {number}
+ *    }]
+ * } DecimalPlace[] (represents the decimal digits that do repeat. Ex. since 1/14 = 0.0714285714285...
+ *  714285 are the repeating decimal digits),
+ * }
+ * }}
+ */
 
 export const convertToRepeatingDecimal = (
   fraction: Fraction

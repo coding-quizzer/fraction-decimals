@@ -1,12 +1,17 @@
-type Fraction = [number, number];
-type DecimalPlace = {
+export type Fraction = [number, number];
+export type DecimalPlace = {
   baseNumerator: number;
   quotient: number;
 };
 
-type DecimalExpansionObject = {
+export type DecimalExpansionObject = {
   decimal: DecimalPlace[];
   repeatBeginIndex: number | null;
+};
+
+export type RepeatingDecimalObject = {
+  nonRepeatingDigits?: DecimalPlace[];
+  repeatingDigits?: DecimalPlace[];
 };
 /**
  * Generates an array object with the information neccesary to produce the decimal expansion.
@@ -119,12 +124,7 @@ const getRepeatingDigits = (
  * }}
  */
 
-export const convertToRepeatingDecimal = (
-  fraction: Fraction
-): {
-  nonRepeatingDigits?: DecimalPlace[];
-  repeatingDigits?: DecimalPlace[];
-} => {
+export const convertToRepeatingDecimal = (fraction: Fraction): RepeatingDecimalObject => {
   const decimalExpansion = generateDecimalExpansion(fraction);
   const { decimal, repeatBeginIndex } = decimalExpansion;
 

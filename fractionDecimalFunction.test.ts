@@ -1,11 +1,12 @@
 import {
   convertToRepeatingDecimal,
   generateDecimalExpansion,
+  DecimalExpansionObject,
 } from "./fractionDecimalFunctions";
 
 describe(generateDecimalExpansion, () => {
   it("Returns object representation of 0.25 when fraction is 1/4", () => {
-    expect(generateDecimalExpansion([1, 4])).toStrictEqual({
+    const expectedResult: DecimalExpansionObject = {
       decimal: [
         {
           baseNumerator: 1,
@@ -17,11 +18,13 @@ describe(generateDecimalExpansion, () => {
         },
       ],
       repeatBeginIndex: null,
-    });
+    };
+
+    expect(generateDecimalExpansion([1, 4])).toStrictEqual(expectedResult);
   });
 
   it("Returns object representation of 0.222... when fraction is 2/9", () => {
-    expect(generateDecimalExpansion([2, 9])).toStrictEqual({
+    const expectedResult: DecimalExpansionObject = {
       decimal: [
         {
           baseNumerator: 2,
@@ -29,7 +32,8 @@ describe(generateDecimalExpansion, () => {
         },
       ],
       repeatBeginIndex: 0,
-    });
+    };
+    expect(generateDecimalExpansion([2, 9])).toStrictEqual(expectedResult);
   });
 });
 

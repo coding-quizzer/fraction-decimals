@@ -1,37 +1,54 @@
 type Fraction = [number, number];
 type DecimalPlace = {
-  baseNumerator :number,
-  quotient :number
-}
-const fraction :Fraction = [1, 90];
-
-const [numerator, denominator] : [number, number] = fraction;
-let baseNumerator :number = numerator;
-let quotient :number = Math.floor(numerator * 10 / denominator);
-
-const decimal :DecimalPlace[] = [];
-
-let nextDecimal :DecimalPlace = {
-  baseNumerator,
-  quotient,
+  baseNumerator: number;
+  quotient: number;
 };
 
-// let repeatedDecimal :number = quotient;
+const fraction: Fraction = [1, 25];
 
-while (nextDecimal.baseNumerator !== 0 && !decimal.map(decimalPoint => decimalPoint.baseNumerator).includes(nextDecimal.baseNumerator)) {
+const generateDecimalExpansion = (
+  fraction: Fraction
+): { decimal: DecimalPlace[]; repeatBeginIndex: number | null } => {
+  const [numerator, denominator]: [number, number] = fraction;
+  let baseNumerator: number = numerator;
+  let quotient: number = Math.floor((numerator * 10) / denominator);
 
-  decimal.push(nextDecimal)
+  const decimal: DecimalPlace[] = [];
 
-  baseNumerator = (nextDecimal.baseNumerator * 10) % denominator;
-  quotient = Math.floor(baseNumerator * 10 / denominator);
-
-  nextDecimal = {
+  let nextDecimal: DecimalPlace = {
     baseNumerator,
-    quotient
+    quotient,
+  };
+
+  // let repeatedDecimal :number = quotient;
+
+  while (
+    nextDecimal.baseNumerator !== 0 &&
+    !decimal
+      .map((decimalPoint) => decimalPoint.baseNumerator)
+      .includes(nextDecimal.baseNumerator)
+  ) {
+    decimal.push(nextDecimal);
+
+    baseNumerator = (nextDecimal.baseNumerator * 10) % denominator;
+    quotient = Math.floor((baseNumerator * 10) / denominator);
+
+    nextDecimal = {
+      baseNumerator,
+      quotient,
+    };
   }
 
-}
+  const repeatBeginIndex = decimal.findIndex(
+    (decimalPlace) => decimalPlace.baseNumerator === nextDecimal.baseNumerator
+  );
 
-const decimalObject = { decimal, nextDecimalIndex: decimal.findIndex(decimalPlace => decimalPlace.baseNumerator === nextDecimal.baseNumerator) };
+  const repeatingDecimal = repeatBeginIndex !== -1;
 
-console.log("decimal", decimalObject);
+  return {
+    decimal,
+    repeatBeginIndex: repeatingDecimal ? repeatBeginIndex : null,
+  };
+};
+
+console.log(generateDecimalExpansion(fraction));

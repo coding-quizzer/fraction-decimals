@@ -8,6 +8,27 @@ type DecimalExpansionObject = {
   decimal: DecimalPlace[];
   repeatBeginIndex: number | null;
 };
+/**
+ *
+ * @param fraction [numerator, denominator] array representation of a fraction.
+ * @returns {
+ *  {
+ *    decimal: [{
+ *      baseNumerator: number
+ *       (
+ *          Base numerator represents the numerator that coresponds to the
+ *          decimal where that digit is the first digit after the decimal point. For example since 1/7 = 0.142857,
+ *          the first one in 142857 has a base numerator of 1 and the 4 has a base numerator of 3 since 3/7 = 0.428571...
+ *       )
+ *
+ *       quotient: number (the numerical value of the digit itself)
+ *  }],
+ *
+ *  repeatBeginIndex: number (the index of the first digit in the number's repeating decimal)
+ *
+ * }
+ * }
+ **/
 
 export const generateDecimalExpansion = (fraction: Fraction): DecimalExpansionObject => {
   const [numerator, denominator]: [number, number] = fraction;

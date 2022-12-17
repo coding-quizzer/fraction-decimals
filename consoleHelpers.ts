@@ -3,6 +3,7 @@ export const convertFractionToTuple = (stringFraction: string): [number, number]
   let numerator: number = 0;
   let denominator: number;
   let currentNumber: string = "";
+  if (!stringFraction) throw Error("Argument is empty. Please supply an of the form a/b");
   for (const char of stringFraction) {
     if (!/[0-9]|\//.test(char)) {
       throw new Error(`${char} is an invalid character. Please only use numbers or \/.`);

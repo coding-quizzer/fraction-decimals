@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node index.ts",
-    "test": "node_modules/.bin/jest --watch"
+    "test": "node_modules/.bin/jest --watch",
+    "to_decimal": "ts-node bin/to_decimal.ts",
+    "unique_decimals": "ts-node bin/unique_decimals.ts"
   },
   "author": "",
   "license": "ISC",

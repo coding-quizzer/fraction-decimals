@@ -2,6 +2,8 @@ import {
   convertToRepeatingDecimal,
   generateDecimalExpansion,
   DecimalExpansionObject,
+  getUniqueNumerators,
+  getUniqueDecimals,
 } from "./fractionDecimalFunctions";
 
 describe(generateDecimalExpansion, () => {
@@ -80,5 +82,86 @@ describe(convertToRepeatingDecimal, () => {
         },
       ],
     });
+  });
+});
+
+describe(getUniqueNumerators, () => {
+  it("Returns 4 when denominator is 5", () => {
+    expect(getUniqueNumerators(5)).toStrictEqual([1, 2, 3, 4]);
+  });
+  it("Returns 1 when denomenator is 7", () => {
+    expect(getUniqueNumerators(7)).toStrictEqual([1]);
+  });
+});
+
+describe(getUniqueDecimals, () => {
+  it("Returns the decimals for 5", () => {
+    expect(getUniqueDecimals(5)).toStrictEqual([
+      {
+        nonRepeatingDigits: [
+          {
+            baseNumerator: 1,
+            quotient: 2,
+          },
+        ],
+      },
+      {
+        nonRepeatingDigits: [
+          {
+            baseNumerator: 2,
+            quotient: 4,
+          },
+        ],
+      },
+      {
+        nonRepeatingDigits: [
+          {
+            baseNumerator: 3,
+            quotient: 6,
+          },
+        ],
+      },
+      {
+        nonRepeatingDigits: [
+          {
+            baseNumerator: 4,
+            quotient: 8,
+          },
+        ],
+      },
+    ]);
+  });
+
+  it("Returns the decimal for 7", () => {
+    expect(getUniqueDecimals(7)).toStrictEqual([
+      {
+        repeatingDigits: [
+          {
+            baseNumerator: 1,
+            quotient: 1,
+          },
+          {
+            baseNumerator: 3,
+            quotient: 4,
+          },
+          {
+            baseNumerator: 2,
+            quotient: 2,
+          },
+          {
+            baseNumerator: 6,
+            quotient: 8,
+          },
+          {
+            baseNumerator: 4,
+            quotient: 5,
+          },
+          {
+            baseNumerator: 5,
+            quotient: 7,
+          },
+        ],
+      },
+    ]);
   });
 });

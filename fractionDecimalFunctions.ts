@@ -141,3 +141,53 @@ export const convertToRepeatingDecimal = (fraction: Fraction): RepeatingDecimalO
 
   return repeatingDecimal;
 };
+
+const addUniqueDecimalPoints = (
+  fraction: Fraction,
+  encounteredNumerators: { [key: string]: boolean }
+) => {
+  const { decimal } = generateDecimalExpansion(fraction);
+
+  for (const { baseNumerator } of decimal) {
+    if (!encounteredNumerators[baseNumerator]) {
+      encounteredNumerators[baseNumerator] = true;
+    }
+  }
+
+  return encounteredNumerators;
+};
+
+export const getUniqueNumerators = (denominator: number): number[] => {
+  let encounteredNumerators: { [key: string]: boolean } = {};
+  let currentNumerator: number = 1;
+  // let decimalCount: number = 0;
+  const uniqueNumerators: number[] = [];
+
+  while (currentNumerator < denominator) {
+    if (encounteredNumerators[currentNumerator]) {
+      currentNumerator++;
+      continue;
+    }
+    encounteredNumerators = addUniqueDecimalPoints(
+      [currentNumerator, denominator],
+      encounteredNumerators
+    );
+    uniqueNumerators.push(currentNumerator);
+    currentNumerator++;
+  }
+
+  console.log(uniqueNumerators);
+
+  return uniqueNumerators;
+};
+
+export const getUniqueDecimals = (denominator: number): RepeatingDecimalObject[] => {
+  const decimals: RepeatingDecimalObject[] = [];
+  const numerators: number[] = getUniqueNumerators(denominator);
+  for (const numerator of numerators) {
+    const newDecimal = convertToRepeatingDecimal([numerator, denominator]);
+    // console.log(newDecimal);
+    decimals.push(newDecimal);
+  }
+  return decimals;
+};

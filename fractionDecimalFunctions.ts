@@ -181,4 +181,13 @@ export const getUniqueNumerators = (denominator: number): number[] => {
   return uniqueNumerators;
 };
 
-getUniqueNumerators(1011);
+export const getUniqueDecimals = (denominator: number): RepeatingDecimalObject[] => {
+  const decimals: RepeatingDecimalObject[] = [];
+  const numerators: number[] = getUniqueNumerators(denominator);
+  for (const numerator of numerators) {
+    const newDecimal = convertToRepeatingDecimal([numerator, denominator]);
+    // console.log(newDecimal);
+    decimals.push(newDecimal);
+  }
+  return decimals;
+};

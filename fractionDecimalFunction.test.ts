@@ -2,6 +2,7 @@ import {
   convertToRepeatingDecimal,
   generateDecimalExpansion,
   DecimalExpansionObject,
+  getUniqueNumerators,
 } from "./fractionDecimalFunctions";
 
 describe(generateDecimalExpansion, () => {
@@ -80,5 +81,14 @@ describe(convertToRepeatingDecimal, () => {
         },
       ],
     });
+  });
+});
+
+describe(getUniqueNumerators, () => {
+  it("Returns 4 when denominator is 5", () => {
+    expect(getUniqueNumerators(5)).toStrictEqual([1, 2, 3, 4]);
+  });
+  it("Returns 1 when denomenator is 7", () => {
+    expect(getUniqueNumerators(7)).toStrictEqual([1]);
   });
 });

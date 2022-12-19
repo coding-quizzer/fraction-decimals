@@ -102,7 +102,7 @@ const getRepeatingDigits = (
 };
 
 /**
- *
+ * Convert a fraction to an object with keys referencing arays of objects representing the repeating and nonrepeating digits in the decimal representation
  * @param {[numerator, denominator]} fraction (tuple representation of a fraction)
  * @returns {{
  *  nonRepeatingDigits: {

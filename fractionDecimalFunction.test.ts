@@ -2,8 +2,9 @@ import {
   convertFractionToRepeatingDecimal,
   generateDecimalExpansion,
   DecimalExpansionObject,
-  getUniqueNumerators,
+  getUniqueNumeratorDecimalObjects,
   getUniqueDecimals,
+  RepeatingDecimalObject,
 } from "./fractionDecimalFunctions";
 
 describe(generateDecimalExpansion, () => {
@@ -85,10 +86,9 @@ describe(convertFractionToRepeatingDecimal, () => {
   });
 });
 
-describe(getUniqueNumerators, () => {
-  it("Returns 4 when denominator is 5", () => {
-    const expectedUniqueNumerators: number[] = [1, 2, 3, 4];
-    const expectedUniqueDecimalObjs: DecimalExpansionObject[] = [
+describe(getUniqueNumeratorDecimalObjects, () => {
+  it("Returns all 4 unique decimal objects when denominator is 5", () => {
+    const expected: DecimalExpansionObject[] = [
       {
         decimal: [
           {
@@ -126,50 +126,42 @@ describe(getUniqueNumerators, () => {
         repeatBeginIndex: null,
       },
     ];
-    const expected: {
-      uniqueNumerators: number[];
-      uniqueDecimalObjs: DecimalExpansionObject[];
-    } = {
-      uniqueNumerators: expectedUniqueNumerators,
-      uniqueDecimalObjs: expectedUniqueDecimalObjs,
-    };
-    expect(getUniqueNumerators(5)).toStrictEqual(expected);
+    expect(getUniqueNumeratorDecimalObjects(5)).toStrictEqual(expected);
   });
-  it("Returns 1 when denomenator is 7", () => {
-    expect(getUniqueNumerators(7)).toStrictEqual({
-      uniqueNumerators: [1],
-      uniqueDecimalObjs: [
-        {
-          decimal: [
-            {
-              baseNumerator: 1,
-              quotient: 1,
-            },
-            {
-              baseNumerator: 3,
-              quotient: 4,
-            },
-            {
-              baseNumerator: 2,
-              quotient: 2,
-            },
-            {
-              baseNumerator: 6,
-              quotient: 8,
-            },
-            {
-              baseNumerator: 4,
-              quotient: 5,
-            },
-            {
-              baseNumerator: 5,
-              quotient: 7,
-            },
-          ],
-          repeatBeginIndex: 0,
-        },
-      ],
-    });
+  it("Returns the one unique decimal object when denomenator is 7", () => {
+    const expected: DecimalExpansionObject[] = [
+      {
+        decimal: [
+          {
+            baseNumerator: 1,
+            quotient: 1,
+          },
+          {
+            baseNumerator: 3,
+            quotient: 4,
+          },
+          {
+            baseNumerator: 2,
+            quotient: 2,
+          },
+          {
+            baseNumerator: 6,
+            quotient: 8,
+          },
+          {
+            baseNumerator: 4,
+            quotient: 5,
+          },
+          {
+            baseNumerator: 5,
+            quotient: 7,
+          },
+        ],
+        repeatBeginIndex: 0,
+      },
+    ];
+
+    expect(getUniqueNumeratorDecimalObjects(7)).toStrictEqual(expected);
   });
 });
 

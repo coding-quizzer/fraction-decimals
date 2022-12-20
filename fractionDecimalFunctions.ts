@@ -189,8 +189,6 @@ export const getUniqueNumeratorDecimalObjects = (
     currentNumerator++;
   }
 
-  console.log(uniqueNumerators);
-
   return uniqueDecimalObjs;
 };
 
@@ -199,7 +197,6 @@ export const getUniqueDecimals = (denominator: number): RepeatingDecimalObject[]
   const uniqueDecimalObjs = getUniqueNumeratorDecimalObjects(denominator);
   for (const decimalObj of uniqueDecimalObjs) {
     const newDecimal = convertDecimalObjectToRepeatingDecimal(decimalObj);
-    console.log(newDecimal);
     decimals.push(newDecimal);
   }
   return decimals;

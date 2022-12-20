@@ -76,6 +76,25 @@ export const generateDecimalExpansion = (fraction: Fraction): DecimalExpansionOb
   };
 };
 
+const convertDecimalObjectToRepeatingDecimal = (
+  decimalObject: DecimalExpansionObject
+) => {
+  const { decimal, repeatBeginIndex } = decimalObject;
+
+  const repeatingDecimal: {
+    nonRepeatingDigits?: DecimalPlace[];
+    repeatingDigits?: DecimalPlace[];
+  } = {};
+  const nonRepeatingDigits = getNonrepeatingDigits(decimal, repeatBeginIndex);
+  const repeatingDigits: null | DecimalPlace[] =
+    repeatBeginIndex !== null ? getRepeatingDigits(decimal, repeatBeginIndex) : null;
+
+  nonRepeatingDigits && (repeatingDecimal.nonRepeatingDigits = nonRepeatingDigits);
+  repeatingDigits && (repeatingDecimal.repeatingDigits = repeatingDigits);
+
+  return repeatingDecimal;
+};
+
 const getNonrepeatingDigits = (
   decimal: DecimalPlace[],
   repeatBeginIndex: number | null
@@ -124,69 +143,63 @@ const getRepeatingDigits = (
  * }}
  */
 
-export const convertToRepeatingDecimal = (fraction: Fraction): RepeatingDecimalObject => {
+export const convertFractionToRepeatingDecimal = (
+  fraction: Fraction
+): RepeatingDecimalObject => {
   const decimalExpansion = generateDecimalExpansion(fraction);
-  const { decimal, repeatBeginIndex } = decimalExpansion;
-
-  const repeatingDecimal: {
-    nonRepeatingDigits?: DecimalPlace[];
-    repeatingDigits?: DecimalPlace[];
-  } = {};
-  const nonRepeatingDigits = getNonrepeatingDigits(decimal, repeatBeginIndex);
-  const repeatingDigits: null | DecimalPlace[] =
-    repeatBeginIndex !== null ? getRepeatingDigits(decimal, repeatBeginIndex) : null;
-
-  nonRepeatingDigits && (repeatingDecimal.nonRepeatingDigits = nonRepeatingDigits);
-  repeatingDigits && (repeatingDecimal.repeatingDigits = repeatingDigits);
-
-  return repeatingDecimal;
+  return convertDecimalObjectToRepeatingDecimal(decimalExpansion);
 };
 
 const addUniqueDecimalPoints = (
   fraction: Fraction,
   encounteredNumerators: { [key: string]: boolean }
 ) => {
-  const { decimal } = generateDecimalExpansion(fraction);
+  const decimalObj: DecimalExpansionObject = generateDecimalExpansion(fraction);
 
-  for (const { baseNumerator } of decimal) {
+  for (const { baseNumerator } of decimalObj.decimal) {
     if (!encounteredNumerators[baseNumerator]) {
       encounteredNumerators[baseNumerator] = true;
     }
   }
 
-  return encounteredNumerators;
+  return { encounteredNumerators, decimalObj };
 };
 
-export const getUniqueNumerators = (denominator: number): number[] => {
+export const getUniqueNumeratorDecimalObjects = (
+  denominator: number
+): DecimalExpansionObject[] => {
   let encounteredNumerators: { [key: string]: boolean } = {};
+  let currentDecimalObj: DecimalExpansionObject = { decimal: [], repeatBeginIndex: 0 };
   let currentNumerator: number = 1;
   // let decimalCount: number = 0;
   const uniqueNumerators: number[] = [];
+  const uniqueDecimalObjs: DecimalExpansionObject[] = [];
 
   while (currentNumerator < denominator) {
     if (encounteredNumerators[currentNumerator]) {
       currentNumerator++;
       continue;
     }
-    encounteredNumerators = addUniqueDecimalPoints(
+    ({ encounteredNumerators, decimalObj: currentDecimalObj } = addUniqueDecimalPoints(
       [currentNumerator, denominator],
       encounteredNumerators
-    );
+    ));
     uniqueNumerators.push(currentNumerator);
+    uniqueDecimalObjs.push(currentDecimalObj);
     currentNumerator++;
   }
 
   console.log(uniqueNumerators);
 
-  return uniqueNumerators;
+  return uniqueDecimalObjs;
 };
 
 export const getUniqueDecimals = (denominator: number): RepeatingDecimalObject[] => {
   const decimals: RepeatingDecimalObject[] = [];
-  const numerators: number[] = getUniqueNumerators(denominator);
-  for (const numerator of numerators) {
-    const newDecimal = convertToRepeatingDecimal([numerator, denominator]);
-    // console.log(newDecimal);
+  const uniqueDecimalObjs = getUniqueNumeratorDecimalObjects(denominator);
+  for (const decimalObj of uniqueDecimalObjs) {
+    const newDecimal = convertDecimalObjectToRepeatingDecimal(decimalObj);
+    console.log(newDecimal);
     decimals.push(newDecimal);
   }
   return decimals;

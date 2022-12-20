@@ -165,9 +165,9 @@ const addUniqueDecimalPoints = (
   return { encounteredNumerators, decimalObj };
 };
 
-export const getUniqueNumerators = (
+export const getUniqueNumeratorDecimalObjects = (
   denominator: number
-): { uniqueNumerators: number[]; uniqueDecimalObjs: DecimalExpansionObject[] } => {
+): DecimalExpansionObject[] => {
   let encounteredNumerators: { [key: string]: boolean } = {};
   let currentDecimalObj: DecimalExpansionObject = { decimal: [], repeatBeginIndex: 0 };
   let currentNumerator: number = 1;
@@ -191,12 +191,12 @@ export const getUniqueNumerators = (
 
   console.log(uniqueNumerators);
 
-  return { uniqueNumerators, uniqueDecimalObjs };
+  return uniqueDecimalObjs;
 };
 
 export const getUniqueDecimals = (denominator: number): RepeatingDecimalObject[] => {
   const decimals: RepeatingDecimalObject[] = [];
-  const { uniqueDecimalObjs } = getUniqueNumerators(denominator);
+  const uniqueDecimalObjs = getUniqueNumeratorDecimalObjects(denominator);
   for (const decimalObj of uniqueDecimalObjs) {
     const newDecimal = convertDecimalObjectToRepeatingDecimal(decimalObj);
     console.log(newDecimal);

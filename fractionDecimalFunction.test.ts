@@ -1,5 +1,5 @@
 import {
-  convertToRepeatingDecimal,
+  convertFractionToRepeatingDecimal,
   generateDecimalExpansion,
   DecimalExpansionObject,
   getUniqueNumerators,
@@ -39,10 +39,10 @@ describe(generateDecimalExpansion, () => {
   });
 });
 
-describe(convertToRepeatingDecimal, () => {
+describe(convertFractionToRepeatingDecimal, () => {
   const decimalExpansion = {};
   it("Returns an array of decimal objects representing 0.25 when for the decimal expansion object representing 1/4", () => {
-    expect(convertToRepeatingDecimal([1, 4])).toStrictEqual({
+    expect(convertFractionToRepeatingDecimal([1, 4])).toStrictEqual({
       nonRepeatingDigits: [
         {
           baseNumerator: 1,
@@ -57,7 +57,7 @@ describe(convertToRepeatingDecimal, () => {
   });
 
   it("Returns an array of decimal objects representing 0.222... when for the decimal expansion object representing 2/9", () => {
-    expect(convertToRepeatingDecimal([2, 9])).toStrictEqual({
+    expect(convertFractionToRepeatingDecimal([2, 9])).toStrictEqual({
       repeatingDigits: [
         {
           baseNumerator: 2,
@@ -68,7 +68,7 @@ describe(convertToRepeatingDecimal, () => {
   });
 
   it("Returns an array of decimal objects representing 0.0111... when for the decimal expansion object representing 1/9", () => {
-    expect(convertToRepeatingDecimal([1, 90])).toStrictEqual({
+    expect(convertFractionToRepeatingDecimal([1, 90])).toStrictEqual({
       nonRepeatingDigits: [
         {
           baseNumerator: 1,
@@ -87,10 +87,89 @@ describe(convertToRepeatingDecimal, () => {
 
 describe(getUniqueNumerators, () => {
   it("Returns 4 when denominator is 5", () => {
-    expect(getUniqueNumerators(5)).toStrictEqual([1, 2, 3, 4]);
+    const expectedUniqueNumerators: number[] = [1, 2, 3, 4];
+    const expectedUniqueDecimalObjs: DecimalExpansionObject[] = [
+      {
+        decimal: [
+          {
+            baseNumerator: 1,
+            quotient: 2,
+          },
+        ],
+        repeatBeginIndex: null,
+      },
+      {
+        decimal: [
+          {
+            baseNumerator: 2,
+            quotient: 4,
+          },
+        ],
+        repeatBeginIndex: null,
+      },
+      {
+        decimal: [
+          {
+            baseNumerator: 3,
+            quotient: 6,
+          },
+        ],
+        repeatBeginIndex: null,
+      },
+      {
+        decimal: [
+          {
+            baseNumerator: 4,
+            quotient: 8,
+          },
+        ],
+        repeatBeginIndex: null,
+      },
+    ];
+    const expected: {
+      uniqueNumerators: number[];
+      uniqueDecimalObjs: DecimalExpansionObject[];
+    } = {
+      uniqueNumerators: expectedUniqueNumerators,
+      uniqueDecimalObjs: expectedUniqueDecimalObjs,
+    };
+    expect(getUniqueNumerators(5)).toStrictEqual(expected);
   });
   it("Returns 1 when denomenator is 7", () => {
-    expect(getUniqueNumerators(7)).toStrictEqual([1]);
+    expect(getUniqueNumerators(7)).toStrictEqual({
+      uniqueNumerators: [1],
+      uniqueDecimalObjs: [
+        {
+          decimal: [
+            {
+              baseNumerator: 1,
+              quotient: 1,
+            },
+            {
+              baseNumerator: 3,
+              quotient: 4,
+            },
+            {
+              baseNumerator: 2,
+              quotient: 2,
+            },
+            {
+              baseNumerator: 6,
+              quotient: 8,
+            },
+            {
+              baseNumerator: 4,
+              quotient: 5,
+            },
+            {
+              baseNumerator: 5,
+              quotient: 7,
+            },
+          ],
+          repeatBeginIndex: 0,
+        },
+      ],
+    });
   });
 });
 

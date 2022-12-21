@@ -165,6 +165,7 @@ const addUniqueDecimalPoints = (
   return { encounteredNumerators, decimalObj };
 };
 
+// TODO: remove redundant decimals represented by larger numerators. For example, remove 2/6, since it is already represented in the decimal for 5/6
 export const getUniqueNumeratorDecimalObjects = (
   denominator: number
 ): DecimalExpansionObject[] => {
@@ -172,7 +173,6 @@ export const getUniqueNumeratorDecimalObjects = (
   let currentDecimalObj: DecimalExpansionObject = { decimal: [], repeatBeginIndex: 0 };
   let currentNumerator: number = 1;
   // let decimalCount: number = 0;
-  const uniqueNumerators: number[] = [];
   const uniqueDecimalObjs: DecimalExpansionObject[] = [];
 
   while (currentNumerator < denominator) {
@@ -184,7 +184,6 @@ export const getUniqueNumeratorDecimalObjects = (
       [currentNumerator, denominator],
       encounteredNumerators
     ));
-    uniqueNumerators.push(currentNumerator);
     uniqueDecimalObjs.push(currentDecimalObj);
     currentNumerator++;
   }

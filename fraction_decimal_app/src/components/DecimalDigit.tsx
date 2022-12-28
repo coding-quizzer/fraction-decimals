@@ -1,9 +1,10 @@
+import "./DecimalDigit.scss"
 type DecimalDigitProps ={
   children: React.ReactNode;
 }
 export default function DecimalDigit(props: DecimalDigitProps) {
   return (
-      <div>
+      <div className="decimal-digit">
         {props.children}
       </div>
   )

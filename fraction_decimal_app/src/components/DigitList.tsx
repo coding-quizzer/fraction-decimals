@@ -1,5 +1,6 @@
 import { RepeatingDecimalObject } from "../../../fractionDecimalFunctions";
 import DecimalDigit from "./DecimalDigit";
+import "./DigitList.scss";
 type DigitListProps = {
   digits: RepeatingDecimalObject;
 };

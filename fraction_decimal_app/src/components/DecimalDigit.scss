@@ -12,4 +12,14 @@
     background-color: rgb(200, 225, 235);
     cursor: default;
   }
+
+  &--popper {
+    display: hidden;
+    width: 10px;
+    height: 10px;
+    &[data-show] {
+      display: block;
+      background: black;
+    }
+  }
 }

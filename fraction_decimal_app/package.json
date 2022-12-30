@@ -10,8 +10,10 @@
     "storybook": "start-storybook -p 6006 -s public"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
     "react": "^16",
-    "react-dom": "^16"
+    "react-dom": "^16",
+    "react-popper": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.7",

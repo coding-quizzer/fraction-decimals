@@ -16,6 +16,27 @@
   &--popper {
     display: none;
 
+    &-arrow {
+      background: inherit;
+      visibility: hidden;
+      // transform: translate(-2.1px, 0px) !important;
+
+      width: 10px;
+      height: 10px;
+      top: -6px;
+
+      &::before {
+        visibility: visible;
+        position: absolute;
+        right: -150%;
+        width: 15px;
+        height: 15px;
+        content: "";
+        transform: rotate(45deg);
+        background: inherit;
+      }
+    }
+
     &[data-show] {
       display: inline-flex;
       height: 1em;

@@ -1,14 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Fraction } from "../../../fractionDecimalFunctions";
 import "./FractionInputBox.scss";
 import NumberContainer from "./NumberContainer";
-export default function FractionInputBox() {
+type FractionInputBoxProps = {
+  onSubmit?: (fraction: Fraction) => void;
+};
+
+export default function FractionInputBox(props: FractionInputBoxProps) {
   const [numerator, setNumerator] = useState("");
   const [denominator, setDenominator] = useState("");
 
+  const handleSubmit = (): void => {
+    if (numerator && denominator) {
+      props.onSubmit && props.onSubmit([Number(numerator), Number(denominator)]);
+    }
+    setNumerator("");
+    setDenominator("");
+  };
   return (
     <div className="fraction-input">
       <input
-        // className={"number-container"}
         name="numerator"
         value={numerator}
         onChange={(e) => {
@@ -20,8 +31,6 @@ export default function FractionInputBox() {
       />
       <section>/</section>
       <input
-        // className={"number-container"}
-
         name="denominator"
         value={denominator}
         onChange={(e) => setDenominator(e.target.value)}
@@ -30,7 +39,7 @@ export default function FractionInputBox() {
         min={1}
       />
 
-      <button>Calculate</button>
+      <button onClick={handleSubmit}>Calculate</button>
     </div>
   );
 }

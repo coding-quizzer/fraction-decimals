@@ -3,6 +3,7 @@ import DecimalDigit from "./DecimalDigit";
 import "./DigitList.scss";
 type DigitListProps = {
   digits: RepeatingDecimalObject;
+  limit?: number;
 };
 
 const extractDecimalDigits = (
@@ -31,7 +32,7 @@ export default function DigitList(props: DigitListProps) {
   const digits: RepeatingDecimalObject = {};
   return (
     <div className="decimal">
-      {extractDecimalDigits(props.digits).map((decimalDigit) => (
+      {extractDecimalDigits(props.digits, props.limit).map((decimalDigit) => (
         <DecimalDigit>{decimalDigit}</DecimalDigit>
       ))}
     </div>

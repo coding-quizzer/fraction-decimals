@@ -16,7 +16,7 @@ const extractDecimalDigits = (
   const { nonRepeatingDigits, repeatingDigits } = decimalObject;
 
   for (let index = 0; index < limit; index++) {
-    console.log("NonRepeating digits", nonRepeatingDigits);
+    const nonRepeatingDigitsLength = nonRepeatingDigits?.length || 0;
     if (nonRepeatingDigits && nonRepeatingDigits[index]) {
       decimalExpansion.push(nonRepeatingDigits[index]);
       continue;
@@ -24,7 +24,9 @@ const extractDecimalDigits = (
 
     if (!repeatingDigits) return decimalExpansion;
 
-    decimalExpansion.push(repeatingDigits[index % repeatingDigits.length]);
+    decimalExpansion.push(
+      repeatingDigits[(index - nonRepeatingDigitsLength) % repeatingDigits.length]
+    );
   }
 
   return decimalExpansion;

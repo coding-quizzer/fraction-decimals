@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { usePopper } from "react-popper";
 import { Fraction } from "../../../fractionDecimalFunctions";
 import "./DecimalDigit.scss";
+import NumberContainer from "./NumberContainer";
 type DecimalDigitProps = {
   children: number;
   fraction: Fraction;
@@ -10,7 +11,7 @@ type DecimalDigitProps = {
 
 export default function DecimalDigit(props: DecimalDigitProps) {
   const [popperIsVisible, setPopperIsVisible] = useState<boolean | null>(null);
-  const [referenceElement, setReferenceElement] = useState<HTMLDivElement | null>(null);
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
   const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -35,14 +36,14 @@ export default function DecimalDigit(props: DecimalDigitProps) {
 
   return (
     <>
-      <div
-        className="decimal-digit"
+      <NumberContainer
         ref={setReferenceElement}
         onMouseOver={() => setPopperIsVisible(true)}
         onMouseLeave={() => setPopperIsVisible(null)}
+        className={"decimal-digit"}
       >
         {props.children}
-      </div>
+      </NumberContainer>
       <div
         className="decimal-digit--popper"
         ref={setPopperElement}

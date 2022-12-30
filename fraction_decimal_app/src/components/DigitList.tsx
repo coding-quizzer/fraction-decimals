@@ -1,6 +1,7 @@
 import { DecimalPlace, RepeatingDecimalObject } from "../../../fractionDecimalFunctions";
 import DecimalDigit from "./DecimalDigit";
 import "./DigitList.scss";
+import NumberContainer from "./NumberContainer";
 type DigitListProps = {
   digits: RepeatingDecimalObject;
   denominator: number;
@@ -33,6 +34,8 @@ export default function DigitList(props: DigitListProps) {
   const digits: RepeatingDecimalObject = {};
   return (
     <div className="decimal">
+      <NumberContainer>0</NumberContainer>
+      <section>.</section>
       {extractDecimalDigits(props.digits, props.limit).map((decimalDigit) => (
         <DecimalDigit fraction={[decimalDigit.baseNumerator, props.denominator]}>
           {decimalDigit.quotient}

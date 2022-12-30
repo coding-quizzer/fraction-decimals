@@ -1,28 +1,29 @@
-import { RepeatingDecimalObject } from "../../../fractionDecimalFunctions";
+import { DecimalPlace, RepeatingDecimalObject } from "../../../fractionDecimalFunctions";
 import DecimalDigit from "./DecimalDigit";
 import "./DigitList.scss";
 type DigitListProps = {
   digits: RepeatingDecimalObject;
+  denominator: number;
   limit?: number;
 };
 
 const extractDecimalDigits = (
   decimalObject: RepeatingDecimalObject,
   limit: number = 8
-): number[] => {
-  const decimalExpansion: number[] = [];
+): DecimalPlace[] => {
+  const decimalExpansion: DecimalPlace[] = [];
   const { nonRepeatingDigits, repeatingDigits } = decimalObject;
 
   for (let index = 0; index < limit; index++) {
     console.log("NonRepeating digits", nonRepeatingDigits);
     if (nonRepeatingDigits && nonRepeatingDigits[index]) {
-      decimalExpansion.push(nonRepeatingDigits[index].quotient);
+      decimalExpansion.push(nonRepeatingDigits[index]);
       continue;
     }
 
     if (!repeatingDigits) return decimalExpansion;
 
-    decimalExpansion.push(repeatingDigits[index % repeatingDigits.length].quotient);
+    decimalExpansion.push(repeatingDigits[index % repeatingDigits.length]);
   }
 
   return decimalExpansion;
@@ -33,7 +34,9 @@ export default function DigitList(props: DigitListProps) {
   return (
     <div className="decimal">
       {extractDecimalDigits(props.digits, props.limit).map((decimalDigit) => (
-        <DecimalDigit>{decimalDigit}</DecimalDigit>
+        <DecimalDigit fraction={[decimalDigit.baseNumerator, props.denominator]}>
+          {decimalDigit.quotient}
+        </DecimalDigit>
       ))}
     </div>
   );

@@ -68,8 +68,12 @@ export default {
   component: DigitList,
 };
 
-export const RepeatingDecimal = () => <DigitList digits={repeatingDecimalObject} />;
-export const NonRepeatingDecimal = () => <DigitList digits={nonRepeatingDecimalObject} />;
+export const RepeatingDecimal = () => (
+  <DigitList digits={repeatingDecimalObject} denominator={7} />
+);
+export const NonRepeatingDecimal = () => (
+  <DigitList digits={nonRepeatingDecimalObject} denominator={8} />
+);
 export const Combination_Limit_4 = () => (
-  <DigitList digits={repeatingNonRepeatingComboObject} limit={4} />
+  <DigitList digits={repeatingNonRepeatingComboObject} denominator={90} limit={4} />
 );

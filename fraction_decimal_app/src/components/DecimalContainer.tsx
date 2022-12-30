@@ -9,7 +9,10 @@ type DecimalContainerProps = {
 export function DecimalContainer(props: DecimalContainerProps) {
   return (
     <div className="decimal-container">
-      <DigitList digits={convertFractionToRepeatingDecimal(props.fraction)} />
+      <DigitList
+        digits={convertFractionToRepeatingDecimal(props.fraction)}
+        denominator={props.fraction[1]}
+      />
     </div>
   );
 }

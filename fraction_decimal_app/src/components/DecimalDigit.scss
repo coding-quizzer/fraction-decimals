@@ -14,12 +14,15 @@
   }
 
   &--popper {
-    display: hidden;
-    width: 10px;
-    height: 10px;
+    display: none;
+
     &[data-show] {
-      display: block;
+      display: inline-flex;
+      height: 1em;
+      padding: 0.5em;
       background: black;
+      color: white;
+      text-align: center;
     }
   }
 }

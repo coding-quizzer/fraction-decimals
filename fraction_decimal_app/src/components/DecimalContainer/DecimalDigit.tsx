@@ -1,4 +1,3 @@
-import { auto } from "@popperjs/core";
 import React, { useState } from "react";
 import { usePopper } from "react-popper";
 import { Fraction } from "../../../../fractionDecimalFunctions";

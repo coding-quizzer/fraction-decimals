@@ -1,9 +1,9 @@
 import { auto } from "@popperjs/core";
 import React, { useState } from "react";
 import { usePopper } from "react-popper";
-import { Fraction } from "../../../fractionDecimalFunctions";
+import { Fraction } from "../../../../fractionDecimalFunctions";
 import "./DecimalDigit.scss";
-import NumberContainer from "./reusables/NumberContainer";
+import NumberContainer from "../reusables/NumberContainer";
 type DecimalDigitProps = {
   children: number;
   fraction: Fraction;

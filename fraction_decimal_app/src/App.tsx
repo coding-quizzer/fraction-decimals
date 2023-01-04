@@ -1,7 +1,6 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
-import { DecimalContainer } from "./components/DecimalContainer";
+import DecimalContainer from "./components/DecimalContainer";
 import { Fraction } from "../../fractionDecimalFunctions";
 import FractionInputBox from "./components/FractionInputBox";
 

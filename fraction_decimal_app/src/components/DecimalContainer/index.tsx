@@ -1,13 +1,13 @@
-import { Fraction } from "../../../fractionDecimalFunctions";
-import { convertFractionToRepeatingDecimal } from "../../../fractionDecimalFunctions";
-import "./DecimalContainer.scss";
+import { Fraction } from "../../../../fractionDecimalFunctions";
+import { convertFractionToRepeatingDecimal } from "../../../../fractionDecimalFunctions";
+import "./index.scss";
 import DigitList from "./DigitList";
-import NumberContainer from "./reusables/NumberContainer";
+import NumberContainer from "../reusables/NumberContainer";
 
 type DecimalContainerProps = {
   fraction: Fraction;
 };
-export function DecimalContainer(props: DecimalContainerProps) {
+export default function DecimalContainer(props: DecimalContainerProps) {
   const [numerator, denominator] = props.fraction;
   return (
     <div className="decimal-container">

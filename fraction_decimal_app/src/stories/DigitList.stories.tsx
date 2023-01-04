@@ -1,5 +1,5 @@
 import { RepeatingDecimalObject } from "../../../fractionDecimalFunctions";
-import DigitList from "../components/DigitList";
+import DigitList from "../components/DecimalContainer/DigitList";
 
 const repeatingDecimalObject: RepeatingDecimalObject = {
   repeatingDigits: [

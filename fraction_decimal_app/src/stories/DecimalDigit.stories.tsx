@@ -1,6 +1,6 @@
 import React from "react";
 
-import DecimalDigit from "../components/DecimalDigit";
+import DecimalDigit from "../components/DecimalContainer/DecimalDigit";
 
 export default {
   title: "DecimalDigit",

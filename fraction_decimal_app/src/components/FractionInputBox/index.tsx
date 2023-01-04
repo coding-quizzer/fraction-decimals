@@ -10,7 +10,8 @@ export default function FractionInputBox(props: FractionInputBoxProps) {
   const [numerator, setNumerator] = useState("");
   const [denominator, setDenominator] = useState("");
 
-  const handleSubmit = (): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
     if (numerator && denominator) {
       props.onSubmit && props.onSubmit([Number(numerator), Number(denominator)]);
     }
@@ -18,19 +19,12 @@ export default function FractionInputBox(props: FractionInputBoxProps) {
     setDenominator("");
   };
   return (
-    <div className="fraction-input">
+    <form className="fraction-input" onSubmit={handleSubmit}>
       <NumberInput name={"numerator"} value={numerator} setValue={setNumerator} />
       <section>/</section>
-      <input
-        name="denominator"
-        value={denominator}
-        onChange={(e) => setDenominator(e.target.value)}
-        style={{ width: denominator ? `${denominator.length * 0.6 + 1}em` : "1.6em" }}
-        type="number"
-        min={1}
-      />
+      <NumberInput name={"denominator"} value={denominator} setValue={setDenominator} />
 
-      <button onClick={handleSubmit}>Calculate</button>
-    </div>
+      <button>Calculate</button>
+    </form>
   );
 }

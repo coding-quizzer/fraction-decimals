@@ -1,7 +1,7 @@
 type NumberInputProps = {
   name: string;
   value: string;
-  setValue: (value?: string) => void;
+  setValue: (value: string) => void;
 };
 
 export default function NumberInput(props: NumberInputProps) {

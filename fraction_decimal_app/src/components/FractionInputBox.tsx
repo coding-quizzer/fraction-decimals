@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Fraction } from "../../../fractionDecimalFunctions";
 import "./FractionInputBox.scss";
-import NumberContainer from "./NumberContainer";
 type FractionInputBoxProps = {
   onSubmit?: (fraction: Fraction) => void;
 };

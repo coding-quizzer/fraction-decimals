@@ -2,7 +2,7 @@ import { Fraction } from "../../../fractionDecimalFunctions";
 import { convertFractionToRepeatingDecimal } from "../../../fractionDecimalFunctions";
 import "./DecimalContainer.scss";
 import DigitList from "./DigitList";
-import NumberContainer from "./NumberContainer";
+import NumberContainer from "./reusables/NumberContainer";
 
 type DecimalContainerProps = {
   fraction: Fraction;

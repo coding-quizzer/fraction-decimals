@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { usePopper } from "react-popper";
 import { Fraction } from "../../../fractionDecimalFunctions";
 import "./DecimalDigit.scss";
-import NumberContainer from "./NumberContainer";
+import NumberContainer from "./reusables/NumberContainer";
 type DecimalDigitProps = {
   children: number;
   fraction: Fraction;

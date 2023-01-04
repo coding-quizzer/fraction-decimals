@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Fraction } from "../../../../fractionDecimalFunctions";
+import NumberInput from "../reusables/NumberInput";
 import "./index.scss";
 type FractionInputBoxProps = {
   onSubmit?: (fraction: Fraction) => void;
@@ -18,16 +19,7 @@ export default function FractionInputBox(props: FractionInputBoxProps) {
   };
   return (
     <div className="fraction-input">
-      <input
-        name="numerator"
-        value={numerator}
-        onChange={(e) => {
-          (!e.target.value || Number(e.target.value)) && setNumerator(e.target.value);
-        }}
-        type="number"
-        style={{ width: numerator ? `${numerator.length * 0.6 + 1}em` : "1.6em" }}
-        min={1}
-      />
+      <NumberInput name={"numerator"} value={numerator} setValue={setNumerator} />
       <section>/</section>
       <input
         name="denominator"

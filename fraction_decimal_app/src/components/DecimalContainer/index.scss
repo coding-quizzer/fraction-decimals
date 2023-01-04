@@ -10,10 +10,19 @@
 
   header {
     display: flex;
+    justify-content: space-between;
+  }
+
+  &--label {
+    display: flex;
 
     section {
       padding: 5px;
       margin: 0;
     }
+  }
+
+  &--digit-limit {
+    display: flex;
   }
 }

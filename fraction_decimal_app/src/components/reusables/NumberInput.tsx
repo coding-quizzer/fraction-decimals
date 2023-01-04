@@ -1,3 +1,4 @@
+import "./NumberInput.scss";
 type NumberInputProps = {
   name: string;
   value: string;

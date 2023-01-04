@@ -37,13 +37,21 @@ const extractDecimalDigits = (
 
 export default function DigitList(props: DigitListProps) {
   const digits: RepeatingDecimalObject = {};
+  const options = {
+    denominator: props.denominator,
+    limit: props.limit,
+  };
   return (
     <div className="decimal">
       <NumberContainer>0</NumberContainer>
       <section>.</section>
       {extractDecimalDigits(props.digits, props.limit).map((decimalDigit, index) => (
         <DecimalDigit
-          key={`${index}|${decimalDigit.baseNumerator}/${props.denominator}`}
+          key={JSON.stringify({
+            ...options,
+            numerator: decimalDigit.baseNumerator,
+            index,
+          })}
           fraction={[decimalDigit.baseNumerator, props.denominator]}
         >
           {decimalDigit.quotient}

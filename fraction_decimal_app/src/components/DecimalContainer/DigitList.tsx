@@ -41,8 +41,11 @@ export default function DigitList(props: DigitListProps) {
     <div className="decimal">
       <NumberContainer>0</NumberContainer>
       <section>.</section>
-      {extractDecimalDigits(props.digits, props.limit).map((decimalDigit) => (
-        <DecimalDigit fraction={[decimalDigit.baseNumerator, props.denominator]}>
+      {extractDecimalDigits(props.digits, props.limit).map((decimalDigit, index) => (
+        <DecimalDigit
+          key={`${index}|${decimalDigit.baseNumerator}/${props.denominator}`}
+          fraction={[decimalDigit.baseNumerator, props.denominator]}
+        >
           {decimalDigit.quotient}
         </DecimalDigit>
       ))}

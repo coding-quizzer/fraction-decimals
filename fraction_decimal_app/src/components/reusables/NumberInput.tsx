@@ -16,7 +16,7 @@ export default function NumberInput(props: NumberInputProps) {
       }}
       type="number"
       className="number-input"
-      style={{ width: value ? `${value.length * 0.6 + 1}em` : "1.6em" }}
+      style={{ width: value ? `${value.length * 0.6 + 1.4}em` : "2em" }}
       min={1}
     />
   );

@@ -20,9 +20,11 @@ export default function FractionInputBox(props: FractionInputBoxProps) {
   };
   return (
     <form className="fraction-input" onSubmit={handleSubmit}>
-      <NumberInput name={"numerator"} value={numerator} setValue={setNumerator} />
-      <section>/</section>
-      <NumberInput name={"denominator"} value={denominator} setValue={setDenominator} />
+      <div className="fraction-input--textboxes">
+        <NumberInput name={"numerator"} value={numerator} setValue={setNumerator} />
+        <section>/</section>
+        <NumberInput name={"denominator"} value={denominator} setValue={setDenominator} />
+      </div>
 
       <button>Calculate</button>
     </form>

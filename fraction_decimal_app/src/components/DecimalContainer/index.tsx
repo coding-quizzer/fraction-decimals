@@ -3,7 +3,7 @@ import { convertFractionToRepeatingDecimal } from "../../../../fractionDecimalFu
 import "./index.scss";
 import DigitList from "./DigitList";
 import NumberInput from "../reusables/NumberInput";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
 
 type DecimalContainerProps = {
@@ -17,6 +17,8 @@ export default function DecimalContainer(props: DecimalContainerProps) {
     props.fraction
   );
 
+  const denominatorHeaderRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     setInputFraction(props.fraction);
     setCalculatedFraction(props.fraction);
@@ -28,6 +30,12 @@ export default function DecimalContainer(props: DecimalContainerProps) {
       inputFraction[1] || prev[1],
     ])
   );
+
+  const slashToSelect = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "/") {
+      denominatorHeaderRef.current?.focus();
+    }
+  };
 
   const [digitLimit, setDigitLimit] = useState<number | null>(8);
   const [tempDigitLimit, setTempDigitLimit] = useState<number | null>(8);
@@ -42,6 +50,7 @@ export default function DecimalContainer(props: DecimalContainerProps) {
             setValue={(numerator: number | null) =>
               setInputFraction((prev) => [numerator, prev[1]])
             }
+            onKeyDown={slashToSelect}
           />
           <section>/</section>
           <NumberInput
@@ -50,6 +59,7 @@ export default function DecimalContainer(props: DecimalContainerProps) {
             setValue={(denominator: number | null) =>
               setInputFraction((prev) => [prev[0], denominator])
             }
+            ref={denominatorHeaderRef}
           />
         </div>
         <div className="decimal-container--limit">

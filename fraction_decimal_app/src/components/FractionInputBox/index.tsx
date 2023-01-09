@@ -7,16 +7,16 @@ type FractionInputBoxProps = {
 };
 
 export default function FractionInputBox(props: FractionInputBoxProps) {
-  const [numerator, setNumerator] = useState("");
-  const [denominator, setDenominator] = useState("");
+  const [numerator, setNumerator] = useState<number | null>(null);
+  const [denominator, setDenominator] = useState<number | null>(null);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (numerator && denominator) {
       props.onSubmit && props.onSubmit([Number(numerator), Number(denominator)]);
     }
-    setNumerator("");
-    setDenominator("");
+    setNumerator(null);
+    setDenominator(null);
   };
   return (
     <form className="fraction-input" onSubmit={handleSubmit}>

@@ -1,8 +1,8 @@
 import "./NumberInput.scss";
 type NumberInputProps = {
   name: string;
-  value: string;
-  setValue: (value: string) => void;
+  value: number | null;
+  setValue: (value: number | null) => void;
 };
 
 export default function NumberInput(props: NumberInputProps) {
@@ -10,13 +10,13 @@ export default function NumberInput(props: NumberInputProps) {
   return (
     <input
       name={name}
-      value={value}
+      value={value ? value : ""}
       onChange={(e) => {
-        (!e.target.value || Number(e.target.value)) && setValue(e.target.value);
+        (!e.target.value || Number(e.target.value)) && setValue(Number(e.target.value));
       }}
       type="number"
       className="number-input"
-      style={{ width: value ? `${value.length * 0.6 + 1.4}em` : "2em" }}
+      style={{ width: value ? `${String(value).length * 0.6 + 1.4}em` : "2em" }}
       min={1}
     />
   );

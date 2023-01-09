@@ -5,6 +5,7 @@ import DigitList from "./DigitList";
 import NumberContainer from "../reusables/NumberContainer";
 import NumberInput from "../reusables/NumberInput";
 import { useState } from "react";
+import useDebounce from "../hooks/useDebounce";
 
 type DecimalContainerProps = {
   fraction: Fraction;
@@ -12,6 +13,8 @@ type DecimalContainerProps = {
 export default function DecimalContainer(props: DecimalContainerProps) {
   const [numerator, denominator] = props.fraction;
   const [digitLimit, setDigitLimit] = useState("8");
+  const [tempDigitLimit, setTempDigitLimit] = useState("8");
+  useDebounce(() => setDigitLimit(tempDigitLimit));
   return (
     <div className="decimal-container">
       <header>
@@ -22,7 +25,11 @@ export default function DecimalContainer(props: DecimalContainerProps) {
         </div>
         <div className="decimal-container--limit">
           <label htmlFor={"digit-limit"}>Max Digits</label>
-          <NumberInput name="digit-limit" value={digitLimit} setValue={setDigitLimit} />
+          <NumberInput
+            name="digit-limit"
+            value={tempDigitLimit}
+            setValue={setTempDigitLimit}
+          />
         </div>
       </header>
       <DigitList

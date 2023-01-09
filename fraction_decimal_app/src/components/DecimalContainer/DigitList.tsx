@@ -13,7 +13,7 @@ type DigitListProps = {
 
 const extractDecimalDigits = (
   decimalObject: RepeatingDecimalObject,
-  limit: number = 8
+  limit = 8
 ): DecimalPlace[] => {
   const decimalExpansion: DecimalPlace[] = [];
   const { nonRepeatingDigits, repeatingDigits } = decimalObject;
@@ -36,7 +36,6 @@ const extractDecimalDigits = (
 };
 
 export default function DigitList(props: DigitListProps) {
-  const digits: RepeatingDecimalObject = {};
   const options = {
     denominator: props.denominator,
     limit: props.limit,

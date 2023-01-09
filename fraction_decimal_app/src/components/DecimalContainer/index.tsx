@@ -3,7 +3,7 @@ import { convertFractionToRepeatingDecimal } from "../../../../fractionDecimalFu
 import "./index.scss";
 import DigitList from "./DigitList";
 import NumberInput from "../reusables/NumberInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
 
 type DecimalContainerProps = {
@@ -16,6 +16,11 @@ export default function DecimalContainer(props: DecimalContainerProps) {
   const [inputFraction, setInputFraction] = useState<[number | null, number | null]>(
     props.fraction
   );
+
+  useEffect(() => {
+    setInputFraction(props.fraction);
+    setCalculatedFraction(props.fraction);
+  }, [props.fraction[0], props.fraction[1]]);
 
   useDebounce(() =>
     setCalculatedFraction((prev) => [

@@ -2,7 +2,6 @@ import { Fraction } from "../../../../fractionDecimalFunctions";
 import { convertFractionToRepeatingDecimal } from "../../../../fractionDecimalFunctions";
 import "./index.scss";
 import DigitList from "./DigitList";
-import NumberContainer from "../reusables/NumberContainer";
 import NumberInput from "../reusables/NumberInput";
 import { useState } from "react";
 import useDebounce from "../../hooks/useDebounce";
@@ -12,24 +11,17 @@ type DecimalContainerProps = {
 };
 
 export default function DecimalContainer(props: DecimalContainerProps) {
-  const [calculatedNumerator, setCalculatedNumerator] = useState<number>(
-    props.fraction[0]
-  );
-  const [calculatedDenominator, setCalculatedDenominator] = useState<number>(
-    props.fraction[1]
-  );
+  const [calculatedFraction, setCalculatedFraction] = useState<Fraction>(props.fraction);
 
-  const [inputNumerator, setInputNumerator] = useState(props.fraction[0]);
-  const [inputDenominator, setInputDenominator] = useState(props.fraction[1]);
   const [inputFraction, setInputFraction] = useState<[number | null, number | null]>(
     props.fraction
   );
 
   useDebounce(() =>
-    setCalculatedNumerator((prev) => (inputFraction[0] ? inputFraction[0] : prev))
-  );
-  useDebounce(() =>
-    setCalculatedDenominator((prev) => (inputFraction[1] ? inputFraction[1] : prev))
+    setCalculatedFraction((prev) => [
+      inputFraction[0] || prev[0],
+      inputFraction[1] || prev[1],
+    ])
   );
 
   const [digitLimit, setDigitLimit] = useState<number | null>(8);
@@ -65,11 +57,8 @@ export default function DecimalContainer(props: DecimalContainerProps) {
         </div>
       </header>
       <DigitList
-        digits={convertFractionToRepeatingDecimal([
-          calculatedNumerator,
-          calculatedDenominator,
-        ])}
-        denominator={calculatedDenominator}
+        digits={convertFractionToRepeatingDecimal(calculatedFraction)}
+        denominator={calculatedFraction[1]}
         limit={Number(digitLimit)}
       />
     </div>

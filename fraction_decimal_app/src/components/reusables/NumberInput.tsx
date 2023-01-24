@@ -15,12 +15,15 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         name={name}
         value={value ? value : ""}
         onChange={(e) => {
-          (!e.target.value || Number(e.target.value)) && setValue(Number(e.target.value));
+          (!e.target.value || Number(e.target.value)) &&
+            setValue(Number(e.target.value));
         }}
         onKeyDown={onKeyDown}
         type="number"
         className="number-input"
-        style={{ width: value ? `${String(value).length * 0.6 + 1.4}em` : "2em" }}
+        style={{
+          width: value ? `${String(value).length * 0.6 + 1.4}em` : "2em",
+        }}
         min={1}
         ref={ref}
       />
@@ -28,6 +31,6 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
   }
 );
 
-NumberInput.displayName = "Number Input";
+NumberInput.displayName = "Number_Input";
 
 export default NumberInput;

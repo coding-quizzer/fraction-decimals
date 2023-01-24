@@ -27,6 +27,6 @@ const NumberContainer = React.forwardRef(function (
   );
 });
 
-NumberContainer.displayName = "Number Container";
+NumberContainer.displayName = "Number_Container";
 
 export default NumberContainer;

@@ -7,103 +7,87 @@ export default {
 
 const aspectRatio = "2 / 3";
 const padding = 5;
-const minHeight = 75;
+// const minHeight = 75;
+const height = 100;
 
 export const Default = () => (
-  <Carousel>
-    <div>
-      <div style={{ padding }}>
-        <div
-          style={{
-            width: "100%",
-            minHeight,
-            aspectRatio,
-            backgroundColor: "red",
-          }}
-        />
-      </div>
+  <Carousel width={77.5}>
+    <div style={{ padding, width: "fit-content" }}>
+      <div
+        style={{
+          //width: "100%",
+          height,
+          aspectRatio,
+          backgroundColor: "red",
+        }}
+      />
     </div>
 
-    <div>
-      <div style={{ padding }}>
-        <div
-          style={{
-            width: "100%",
-            minHeight,
-            aspectRatio: aspectRatio,
-            backgroundColor: "yellow",
-          }}
-        />
-      </div>
+    <div style={{ padding, width: "fit-content" }}>
+      <div
+        style={{
+          //width: "100%",
+
+          height,
+          aspectRatio: aspectRatio,
+          backgroundColor: "yellow",
+        }}
+      />
     </div>
 
-    <div>
-      <div style={{ padding }}>
-        <div
-          style={{
-            minHeight,
-            width: "100%",
-            aspectRatio: aspectRatio,
-            backgroundColor: "blue",
-          }}
-        />
-      </div>
+    <div style={{ padding, width: "fit-content" }}>
+      <div
+        style={{
+          height,
+          //width: "100%",
+          aspectRatio: aspectRatio,
+          backgroundColor: "blue",
+        }}
+      />
     </div>
 
-    <div>
-      <div style={{ padding }}>
-        <div>
-          <div style={{ padding }}>
-            <div
-              style={{
-                width: "100%",
-                minHeight,
-                aspectRatio,
-                backgroundColor: "red",
-              }}
-            />
-          </div>
-        </div>
+    <div style={{ padding, width: "fit-content" }}>
+      <div
+        style={{
+          //width: "100%",
+          height,
+          aspectRatio,
+          backgroundColor: "red",
+        }}
+      />
+    </div>
 
-        <div>
-          <div style={{ padding }}>
-            <div
-              style={{
-                width: "100%",
-                minHeight,
-                aspectRatio: aspectRatio,
-                backgroundColor: "yellow",
-              }}
-            />
-          </div>
-        </div>
+    <div style={{ padding, width: "fit-content" }}>
+      <div
+        style={{
+          //width: "100%",
+          height,
+          aspectRatio: aspectRatio,
+          backgroundColor: "yellow",
+        }}
+      />
+    </div>
 
-        <div>
-          <div style={{ padding }}>
-            <div
-              style={{
-                minHeight,
-                width: "100%",
-                aspectRatio: aspectRatio,
-                backgroundColor: "blue",
-              }}
-            />
-          </div>
-        </div>
+    <div style={{ padding, width: "fit-content" }}>
+      <div
+        style={{
+          height,
+          // width: "100%",
+          aspectRatio: aspectRatio,
+          backgroundColor: "blue",
+        }}
+      />
+    </div>
 
-        <div>
-          <div style={{ padding }}>
-            <div
-              style={{
-                width: "100%",
-                minHeight,
-                aspectRatio: aspectRatio,
-                backgroundColor: "orange",
-              }}
-            />
-          </div>
-        </div>
-      </div>
+    <div style={{ padding, width: "fit-content" }}>
+      <div
+        style={{
+          //width: "100%",
+          height,
+          aspectRatio: aspectRatio,
+          backgroundColor: "orange",
+        }}
+      />
     </div>
   </Carousel>
 );

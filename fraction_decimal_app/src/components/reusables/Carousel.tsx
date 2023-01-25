@@ -4,14 +4,17 @@ import "./Carousel.scss";
 type CarouselProps = {
   children: React.ReactNode[];
   show?: number;
-  width?: string | number;
+  unitWidth?: number;
+  arrowMargin?: number;
 };
 const Carousel = (props: CarouselProps) => {
-  const { children, show } = props;
+  const { children } = props;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [length, setLength] = useState(children.length);
+  const [show, setShow] = useState(props.show || 1);
+  const [arrowMargin, setArrowMargin] = useState(props.unitWidth || 0);
   const next = () => {
-    if (currentIndex < length - 1) {
+    if (currentIndex < length - show) {
       setCurrentIndex((prevState) => prevState + 1);
     }
   };
@@ -22,15 +25,22 @@ const Carousel = (props: CarouselProps) => {
   };
 
   useEffect(() => setLength(children.length), [children]);
+  useEffect(() => setShow(props.show || 1), [props.show]);
+  useEffect(() => setArrowMargin(props.arrowMargin || 0), [props.arrowMargin]);
 
   return (
-    <div className="carousel-container" style={{ width: props.width }}>
+    <div
+      className="carousel-container"
+      style={{
+        width: props.unitWidth && props.unitWidth * show,
+      }}
+    >
       <div className="carousel-wrapper">
         {currentIndex > 0 && (
           <button
             className="left-arrow"
             onClick={prev}
-            style={{ left: "-17.5px" }}
+            style={{ left: arrowMargin }}
           >
             &lt;
           </button>
@@ -40,17 +50,17 @@ const Carousel = (props: CarouselProps) => {
             className="carousel-content"
             style={{
               transform: `translateX(-${currentIndex * 100}%)`,
-              width: props.width,
+              width: props.unitWidth,
             }}
           >
             {children}
           </div>
         </div>
-        {currentIndex < length - 1 && (
+        {currentIndex < length - show && (
           <button
             className="right-arrow"
             onClick={next}
-            style={{ right: "-17.5px" }}
+            style={{ right: arrowMargin }}
           >
             &gt;
           </button>

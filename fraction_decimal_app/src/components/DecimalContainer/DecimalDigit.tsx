@@ -10,8 +10,12 @@ type DecimalDigitProps = {
 
 export default function DecimalDigit(props: DecimalDigitProps) {
   const [popperIsVisible, setPopperIsVisible] = useState<boolean | null>(null);
-  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
-  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
+    null
+  );
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  );
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
     placement: "bottom-start",
@@ -40,6 +44,7 @@ export default function DecimalDigit(props: DecimalDigitProps) {
         onMouseOver={() => setPopperIsVisible(true)}
         onMouseLeave={() => setPopperIsVisible(null)}
         className={"decimal-digit"}
+        width={36}
       >
         {props.children}
       </NumberContainer>

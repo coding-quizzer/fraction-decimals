@@ -1,4 +1,5 @@
 import DecimalContainer from "../components/DecimalContainer";
+import "../index.css";
 export default {
   title: "DecimalContainer",
   component: DecimalContainer,

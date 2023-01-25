@@ -7,6 +7,8 @@ type NumberContainerProps = {
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
   ref?: React.LegacyRef<HTMLDivElement>;
   className?: string;
+  width?: number;
+  background?: string;
 };
 
 const NumberContainer = React.forwardRef(function (
@@ -21,6 +23,7 @@ const NumberContainer = React.forwardRef(function (
       onMouseLeave={onMouseLeave}
       ref={ref}
       className={className + " number-container"}
+      style={{ width: props.width, background: props.background }}
     >
       {children}
     </div>

@@ -1,3 +1,4 @@
+import "../index.css";
 import { RepeatingDecimalObject } from "../../../fractionDecimalFunctions";
 import DigitList from "../components/DecimalContainer/DigitList";
 
@@ -75,5 +76,9 @@ export const NonRepeatingDecimal = () => (
   <DigitList digits={nonRepeatingDecimalObject} denominator={8} />
 );
 export const Combination_Limit_4 = () => (
-  <DigitList digits={repeatingNonRepeatingComboObject} denominator={90} limit={4} />
+  <DigitList
+    digits={repeatingNonRepeatingComboObject}
+    denominator={90}
+    limit={4}
+  />
 );

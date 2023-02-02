@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-// import { usePopper } from "react-popper";
+import { useEffect, useRef, useState } from "react";
 import {
   arrow,
   useFloating,
@@ -17,13 +16,6 @@ type DecimalDigitProps = {
 
 export default function DecimalDigit(props: DecimalDigitProps) {
   const [isOpen, setIsOpen] = useState(false);
-  // const [popperIsVisible, setPopperIsVisible] = useState<boolean | null>(null);
-  // const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
-  //   null
-  // );
-  // const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
-  //   null
-  // );
 
   const arrowRef = useRef(null);
 
@@ -50,11 +42,6 @@ export default function DecimalDigit(props: DecimalDigitProps) {
     ],
   });
 
-  // console.log(middlewareData);
-
-  // const arrowX = middlewareData.arrow?.x;
-  // const arrowY = middlewareData.arrow?.y;
-
   const [arrowCoords, setArrowCoords] = useState({
     x: middlewareData.arrow?.x,
     y: middlewareData.arrow?.y,
@@ -67,25 +54,6 @@ export default function DecimalDigit(props: DecimalDigitProps) {
   const hover = useHover(context);
 
   const { getReferenceProps, getFloatingProps } = useInteractions([hover]);
-  // console.log({ x, y, strategy, refs });
-  // const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
-  // const { styles, attributes } = usePopper(referenceElement, popperElement, {
-  //   placement: "bottom-start",
-  //   modifiers: [
-  //     {
-  //       name: "offset",
-  //       options: {
-  //         offset: [-8, 13],
-  //       },
-  //     },
-  //     {
-  //       name: "arrow",
-  //       options: {
-  //         element: arrowElement,
-  //       },
-  //     },
-  //   ],
-  // });
 
   const { fraction } = props;
 
@@ -93,20 +61,12 @@ export default function DecimalDigit(props: DecimalDigitProps) {
     <>
       <NumberContainer
         ref={refs.setReference}
-        // onMouseOver={() => setPopperIsVisible(true)}
-        // onMouseLeave={() => setPopperIsVisible(null)}
         className={"decimal-digit"}
         width={36}
         {...getReferenceProps()}
       >
         {props.children}
       </NumberContainer>
-      {/* <div
-        className="decimal-digit--popper"
-        ref={setPopperElement}
-        style={styles.popper}
-        {...(attributes.popper, { "data-show": popperIsVisible })}
-      > */}
       <FloatingPortal>
         {isOpen && (
           <div
@@ -129,7 +89,7 @@ export default function DecimalDigit(props: DecimalDigitProps) {
                 left: arrowCoords.x ? `${arrowCoords.x}px` : "",
                 top: arrowCoords.y ? `${arrowCoords.y}px` : "",
               }}
-            ></div>
+            />
           </div>
         )}
       </FloatingPortal>

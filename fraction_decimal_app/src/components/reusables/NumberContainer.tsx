@@ -24,6 +24,7 @@ const NumberContainer = React.forwardRef(function (
       ref={ref}
       className={className + " number-container"}
       style={{ width: props.width, background: props.background }}
+      // {...props}
     >
       {children}
     </div>

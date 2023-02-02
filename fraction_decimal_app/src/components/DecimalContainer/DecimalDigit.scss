@@ -7,9 +7,16 @@
   }
 
   &--popper {
-    display: none;
+    // display: none;
+    display: inline-flex;
+    height: 2.3em;
+    padding: 0.5em;
+    background: black;
+    color: white;
+    text-align: center;
 
     &-arrow {
+      position: absolute;
       background: inherit;
       visibility: hidden;
       // transform: translate(-2.1px, 0px) !important;

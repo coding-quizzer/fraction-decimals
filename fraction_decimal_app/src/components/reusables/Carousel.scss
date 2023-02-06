@@ -52,4 +52,8 @@
     background-color: hsl(197 81% 92%);
     color: black;
   }
+
+  &:focus {
+    outline-style: none;
+  }
 }

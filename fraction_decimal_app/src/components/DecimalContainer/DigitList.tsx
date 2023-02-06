@@ -83,7 +83,7 @@ export default function DigitList(props: DigitListProps) {
   };
   return (
     <div className="decimal">
-      <Carousel unitWidth={36} show={8}>
+      <Carousel unitWidth={46} show={8}>
         {/* <section>.</section> */}
         {getDecimalDigitElements(props.digits, options)}
       </Carousel>

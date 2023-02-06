@@ -19,19 +19,6 @@ export default function DecimalDigit(props: DecimalDigitProps) {
 
   const arrowRef = useRef(null);
 
-  const floatingObj = useFloating({
-    open: isOpen,
-    onOpenChange: setIsOpen,
-    middleware: [
-      arrow({
-        element: arrowRef,
-      }),
-    ],
-  });
-  useEffect(() => {
-    console.log(floatingObj);
-  }, [floatingObj]);
-
   const { x, y, strategy, refs, context, middlewareData } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
@@ -41,6 +28,9 @@ export default function DecimalDigit(props: DecimalDigitProps) {
       }),
     ],
   });
+  useEffect(() => {
+    console.log(arrow({ element: arrowRef }));
+  }, [arrowRef]);
 
   const [arrowCoords, setArrowCoords] = useState({
     x: middlewareData.arrow?.x,

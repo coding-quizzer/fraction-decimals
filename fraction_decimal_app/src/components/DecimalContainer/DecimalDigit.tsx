@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   arrow,
+  offset,
   useFloating,
   useHover,
   useInteractions,
@@ -23,14 +24,15 @@ export default function DecimalDigit(props: DecimalDigitProps) {
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [
+      offset(10),
       arrow({
         element: arrowRef,
       }),
     ],
   });
-  useEffect(() => {
-    console.log(arrow({ element: arrowRef }));
-  }, [arrowRef]);
+  // useEffect(() => {
+  //   console.log(arrow({ element: arrowRef }));
+  // }, [arrowRef]);
 
   const [arrowCoords, setArrowCoords] = useState({
     x: middlewareData.arrow?.x,

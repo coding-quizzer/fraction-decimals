@@ -11,11 +11,13 @@ type DecimalContainerProps = {
 };
 
 export default function DecimalContainer(props: DecimalContainerProps) {
-  const [calculatedFraction, setCalculatedFraction] = useState<Fraction>(props.fraction);
-
-  const [inputFraction, setInputFraction] = useState<[number | null, number | null]>(
+  const [calculatedFraction, setCalculatedFraction] = useState<Fraction>(
     props.fraction
   );
+
+  const [inputFraction, setInputFraction] = useState<
+    [number | null, number | null]
+  >(props.fraction);
 
   const denominatorHeaderRef = useRef<HTMLInputElement>(null);
 
@@ -63,7 +65,7 @@ export default function DecimalContainer(props: DecimalContainerProps) {
           />
         </div>
         <div className="decimal-container--limit">
-          <label htmlFor={"digit-limit"}>Max Digits</label>
+          <label htmlFor={"digit-limit"}>Decimal Places</label>
           <NumberInput
             name="digit-limit"
             value={tempDigitLimit}
